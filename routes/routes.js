@@ -4,7 +4,7 @@ const Workout = require("../models/workout");
 const mongojs = require("mongojs");
 
 //setup mongojs
-const db = mongojs("workout", ["workouts"]);
+const db = mongojs("heroku_7m2x998l", ["workouts"]);
 
 //post routes
 //for the create workout function

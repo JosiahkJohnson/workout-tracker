@@ -14,7 +14,7 @@ const workoutSchema = new Schema({
 });
 
 //setup the workout model into a variable that can be exported
-const Workout = mongoose.model("Workout", workoutSchema);
+const Workout = mongoose.model("heroku_7m2x998l", workoutSchema);
 
 //export our new schema
 module.exports = Workout;
