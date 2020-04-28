@@ -4,7 +4,7 @@ const Workout = require("../models/workout");
 const mongojs = require("mongojs");
 
 //setup mongojs
-const db = mongojs("heroku_7m2x998l", ["workouts"]);
+//const db = mongojs("heroku_7m2x998l", ["workouts"]);
 
 //post routes
 //for the create workout function
@@ -23,14 +23,19 @@ router.post("/api/workouts", (req, res) => {
 //put routes
 //route for the add exercise function
 router.put("/api/workouts/:id", (req, res) => {
+    console.log("Entering a new exercise");
     console.log(req.params.id);
     console.log(req.body);
     //determine the type of exercise
     const type = req.body.type;
     //if cardio update as a cardio, if not, update as resistance
-    db.workouts.update(
-        { _id: mongojs(req.params.id) },
-    { $push: { exercises: req.body } }); 
+    Workout.findByIdAndUpdate(req.params.id, { $push: { exercises: req.body } }, (error, data) => {
+        if(error){
+            throw(error);
+        }
+        res.send(data);
+        console.log(data);
+    });
 });
 
 //get routes
